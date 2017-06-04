@@ -127,6 +127,9 @@ public class ScriptController : MonoBehaviour {
 				case LevelObject.LevelObjectType.Plank:
 					writePlankScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
+				case LevelObject.LevelObjectType.Spring:
+					writeSpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
 				case LevelObject.LevelObjectType.Coin:
 					break;
 				default:
@@ -194,6 +197,27 @@ public class ScriptController : MonoBehaviour {
 		string yRot = go.transform.rotation.eulerAngles.y.ToString();
 		string zRot = go.transform.rotation.eulerAngles.z.ToString();
 		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Plank).ToString();
+
+		if(levelObject.isIntro)
+		{
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
+
+	}
+
+	private void writeSpringScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Spring).ToString();
 
 		if(levelObject.isIntro)
 		{
