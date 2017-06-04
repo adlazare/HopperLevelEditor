@@ -110,6 +110,11 @@ public class ScriptController : MonoBehaviour {
 				{
 					GameObject nextObject = filteredObjectList[i + 1];
 					timeTillNext = (nextObject.transform.position.z - levelObject.gameObject.transform.position.z) / 12f;
+					Debug.Log("Diff");
+					Debug.Log(nextObject.transform.position.z - levelObject.gameObject.transform.position.z);
+					Debug.Log("Time till next");
+					Debug.Log(timeTillNext);
+					Debug.Log("---------------------");
 				}
 				else
 				{
