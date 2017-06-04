@@ -56,14 +56,11 @@ public class ScriptController : MonoBehaviour {
 			}
 
 			streamWriter = new StreamWriter(filePath, false);
-			// TODO remove
-			streamWriter.WriteLine("platformPoolCount,2");
-			streamWriter.WriteLine("definePlatformPool,Box1,10");
-			streamWriter.WriteLine("definePlatformPool,Spinner,10");
-
 
 			List<GameObject> unfilteredObjectList = new List<GameObject>();
 			List<GameObject> filteredObjectList = new List<GameObject>();
+			List<GameObject> poolDefinitionObjectList = new List<GameObject>();
+			List<PoolDefinition> poolDefinitionList = new List<PoolDefinition>();
 			UnityEngine.Object[] rawObjectList = FindObjectsOfType(typeof(GameObject));
 			for(int i = 0; i < rawObjectList.Length; i++)
 			{
@@ -79,20 +76,53 @@ public class ScriptController : MonoBehaviour {
 				{
 					filteredObjectList.Add(go);
 				}
+				else if(go.layer == 9)
+				{
+					poolDefinitionObjectList.Add(go);
+				}
 			}
 
+			streamWriter.WriteLine("platformPoolCount," + poolDefinitionObjectList.Count.ToString());
+			for(int i = 0; i < poolDefinitionObjectList.Count; i++)
+			{
+				PoolDefinition poolDefinition = poolDefinitionObjectList[i].GetComponent<PoolDefinition>();
+				poolDefinitionList.Add(poolDefinition);
+
+				switch(poolDefinition.poolType)
+				{
+				case PoolDefinition.PoolType.platform:
+					streamWriter.WriteLine("definePlatformPool," +  LevelObject.getObjectNameByObjectType(poolDefinition.levelObjectType) + "," + poolDefinition.poolSize.ToString());
+					break;
+				case PoolDefinition.PoolType.collectible:
+					break;
+				case PoolDefinition.PoolType.obstacle:
+					break;
+				}
+			}
+
+			// Write the script lines for the level objects
 			for(int i = 0; i < filteredObjectList.Count; i++)
 			{
 				GameObject go = filteredObjectList[i];
+				float timeTillNext = 0;
 				LevelObject levelObject = go.GetComponent<LevelObject>();
+				if(i < (filteredObjectList.Count - 1))
+				{
+					GameObject nextObject = filteredObjectList[i + 1];
+					timeTillNext = (nextObject.transform.position.z - levelObject.gameObject.transform.position.z) / 12f;
+				}
+				else
+				{
+					timeTillNext = 10;
+				}
 
 				switch(levelObject.levelObjectType)
 				{
 				case LevelObject.LevelObjectType.Box1:
-					writeBox1ScriptLine(go, levelObject, streamWriter);
+					writeBox1ScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				case LevelObject.LevelObjectType.Spinner:
-					writeSpinnerScriptLine(go, levelObject, streamWriter);
+					writeSpinnerScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				case LevelObject.LevelObjectType.Coin:
 					break;
@@ -111,7 +141,7 @@ public class ScriptController : MonoBehaviour {
 		}
 	}
 
-	private void writeBox1ScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter)
+	private void writeBox1ScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
 	{
 		string xPos = go.transform.position.x.ToString();
 		string yPos = go.transform.position.y.ToString();
@@ -119,14 +149,19 @@ public class ScriptController : MonoBehaviour {
 		string xRot = go.transform.rotation.eulerAngles.x.ToString();
 		string yRot = go.transform.rotation.eulerAngles.y.ToString();
 		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Box1).ToString();
 
 		if(levelObject.isIntro)
 		{
-			streamWriter.WriteLine("introPlatform,0," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + ",1");
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
 		}
 	}
 
-	private void writeSpinnerScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter)
+	private void writeSpinnerScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
 	{
 		string xPos = go.transform.position.x.ToString();
 		string yPos = go.transform.position.y.ToString();
@@ -134,10 +169,30 @@ public class ScriptController : MonoBehaviour {
 		string xRot = go.transform.rotation.eulerAngles.x.ToString();
 		string yRot = go.transform.rotation.eulerAngles.y.ToString();
 		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Spinner).ToString();
 
 		if(levelObject.isIntro)
 		{
-			streamWriter.WriteLine("introPlatform,1," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + ",1");
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
 		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
+
+	}
+
+	private int getPoolIndexByObjectType(List<PoolDefinition> poolList, LevelObject.LevelObjectType lot)
+	{
+		for(int i = 0; i < poolList.Count; i++)
+		{
+			if(poolList[i].levelObjectType == lot)
+			{
+				return i;
+			}
+		}
+
+		Debug.Log("Pool not found for this object: " + lot.ToString());
+		return 0;
 	}
 }
