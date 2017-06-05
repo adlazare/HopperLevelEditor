@@ -110,11 +110,11 @@ public class ScriptController : MonoBehaviour {
 				{
 					GameObject nextObject = filteredObjectList[i + 1];
 					timeTillNext = (nextObject.transform.position.z - levelObject.gameObject.transform.position.z) / 12f;
-					Debug.Log("Diff");
-					Debug.Log(nextObject.transform.position.z - levelObject.gameObject.transform.position.z);
-					Debug.Log("Time till next");
-					Debug.Log(timeTillNext);
-					Debug.Log("---------------------");
+//					Debug.Log("Diff");
+//					Debug.Log(nextObject.transform.position.z - levelObject.gameObject.transform.position.z);
+//					Debug.Log("Time till next");
+//					Debug.Log(timeTillNext);
+//					Debug.Log("---------------------");
 				}
 				else
 				{
@@ -136,6 +136,7 @@ public class ScriptController : MonoBehaviour {
 					writeSpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				case LevelObject.LevelObjectType.Coin:
+					writeCoinScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				default:
 					break;
@@ -235,6 +236,27 @@ public class ScriptController : MonoBehaviour {
 
 	}
 
+	private void writeCoinScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Coin).ToString();
+
+		if(levelObject.isIntro)
+		{
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
+
+	}
+
 	private int getPoolIndexByObjectType(List<PoolDefinition> poolList, LevelObject.LevelObjectType lot)
 	{
 		for(int i = 0; i < poolList.Count; i++)
@@ -245,7 +267,7 @@ public class ScriptController : MonoBehaviour {
 			}
 		}
 
-		Debug.Log("Pool not found for this object: " + lot.ToString());
+//		Debug.Log("Pool not found for this object: " + lot.ToString());
 		return 0;
 	}
 }

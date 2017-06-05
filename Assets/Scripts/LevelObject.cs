@@ -23,7 +23,7 @@ public class LevelObject : MonoBehaviour {
 		float gridStep = 0;
 		do
 		{
-			gridStep = gridStep + (24f/60f);
+			gridStep = gridStep + (12f/60f);
 			gridStep = ((float)Mathf.Floor(10000 * gridStep)) / 10000;
 		} while(gridStep < (zFracPart-0.0001f));
 
