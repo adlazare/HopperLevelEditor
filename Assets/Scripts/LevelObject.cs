@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LevelObject : MonoBehaviour {
 
-	public enum LevelObjectType{Box1, Spinner, Plank, Spring, Coin};
+	public enum LevelObjectType{Box1, Spinner, Plank, Spring, Coin, Wall};
 	public LevelObjectType levelObjectType;
 	public bool isIntro;
 	public float forceTimeTillNext;
@@ -17,6 +17,11 @@ public class LevelObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+//		snapToGrid();
+	}
+
+	private void snapToGrid()
+	{
 		int zIntPart = (int)transform.position.z;
 		float zFracPart = transform.position.z - zIntPart;
 		//Debug.Log(transform.position.z + " - " + zIntPart + " - " + zFracPart);
@@ -49,6 +54,9 @@ public class LevelObject : MonoBehaviour {
 			break;
 		case LevelObjectType.Coin:
 			return "Coin";
+			break;
+		case LevelObjectType.Wall:
+			return "Wall";
 			break;
 		default:
 			return "";
