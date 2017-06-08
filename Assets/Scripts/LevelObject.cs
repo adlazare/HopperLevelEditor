@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LevelObject : MonoBehaviour {
 
-	public enum LevelObjectType{Box1, Spinner, Plank, Spring, Coin, Wall};
+	public enum LevelObjectType{Box1, Spinner, Plank, Spring, Coin, Wall, PlankJr};
 	public LevelObjectType levelObjectType;
 	public bool isIntro;
 	public float forceTimeTillNext;
@@ -57,6 +57,9 @@ public class LevelObject : MonoBehaviour {
 			break;
 		case LevelObjectType.Wall:
 			return "Wall";
+			break;
+		case LevelObjectType.PlankJr:
+			return "PlankJr";
 			break;
 		default:
 			return "";
