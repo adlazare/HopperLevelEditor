@@ -162,6 +162,15 @@ public class ScriptController : MonoBehaviour {
 				case LevelObject.LevelObjectType.CoinPlus:
 					writeCoinPlusScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
+				case LevelObject.LevelObjectType.Set1Spike:
+					writeSet1SpikeScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
+				case LevelObject.LevelObjectType.CameraAngle:
+					writeCameraAngleScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
+				case LevelObject.LevelObjectType.ResetCamera:
+					writeResetCameraScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
 				default:
 					break;
 				}
@@ -439,6 +448,44 @@ public class ScriptController : MonoBehaviour {
 		{
 			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
 		}
+	}
+
+	private void writeSet1SpikeScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Spike).ToString();
+
+		if(levelObject.isIntro)
+		{
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
+	}
+
+	private void writeCameraAngleScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.CameraAngle).ToString();
+
+		streamWriter.WriteLine("cameraAngle," + xPos + "," + yPos + "," + "-9.89" + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+	}
+
+	private void writeResetCameraScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		streamWriter.WriteLine("resetCamera");
 	}
 
 	private int getPoolIndexByObjectType(List<PoolDefinition> poolList, LevelObject.LevelObjectType lot)
