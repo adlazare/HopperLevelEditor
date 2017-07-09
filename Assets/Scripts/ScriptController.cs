@@ -171,11 +171,16 @@ public class ScriptController : MonoBehaviour {
 				case LevelObject.LevelObjectType.ResetCamera:
 					writeResetCameraScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
+				case LevelObject.LevelObjectType.Set1MovingBlock:
+					writeSet1MovingBlockScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
+				case LevelObject.LevelObjectType.Set1MovingBlockReverse:
+					writeSet1MovingBlockReverseScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					break;
 				default:
 					break;
 				}
 			}
-
 
 			streamWriter.Close();
 			errorHappened = false;
@@ -486,6 +491,46 @@ public class ScriptController : MonoBehaviour {
 	private void writeResetCameraScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
 	{
 		streamWriter.WriteLine("resetCamera");
+	}
+
+	private void writeSet1MovingBlockScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1MovingBlock).ToString();
+
+		if(levelObject.isIntro)
+		{
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
+	}
+
+	private void writeSet1MovingBlockReverseScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+	{
+		string xPos = go.transform.position.x.ToString();
+		string yPos = go.transform.position.y.ToString();
+		string zPos = go.transform.position.z.ToString();
+		string xRot = go.transform.rotation.eulerAngles.x.ToString();
+		string yRot = go.transform.rotation.eulerAngles.y.ToString();
+		string zRot = go.transform.rotation.eulerAngles.z.ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1MovingBlockReverse).ToString();
+
+		if(levelObject.isIntro)
+		{
+			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
+		}
+		else
+		{
+			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
+		}
 	}
 
 	private int getPoolIndexByObjectType(List<PoolDefinition> poolList, LevelObject.LevelObjectType lot)

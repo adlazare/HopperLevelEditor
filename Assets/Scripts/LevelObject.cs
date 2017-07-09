@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LevelObject : MonoBehaviour {
 
-	public enum LevelObjectType{Box1, Set1Spinner, Plank, Spring, Coin, Wall, PlankJr, Set1WoodBlock, Set1Spring, Set1Plank, Set1Wall, Set1EndBox, CoinPlus, Set1Spike, CameraAngle, ResetCamera};
+	public enum LevelObjectType{Box1, Set1Spinner, Plank, Spring, Coin, Wall, PlankJr, Set1WoodBlock, Set1Spring, Set1Plank, Set1Wall, Set1EndBox, CoinPlus, Set1Spike, CameraAngle, ResetCamera, Set1MovingBlock, Set1MovingBlockReverse};
 	public LevelObjectType levelObjectType;
 	public bool isIntro;
 	public float forceTimeTillNext;
@@ -87,6 +87,12 @@ public class LevelObject : MonoBehaviour {
 			break;
 		case LevelObjectType.ResetCamera:
 			return "ResetCamera";
+			break;
+		case LevelObjectType.Set1MovingBlock:
+			return "Set1MovingBlock";
+			break;
+		case LevelObjectType.Set1MovingBlockReverse:
+			return "Set1MovingBlockReverse";
 			break;
 		default:
 			return "";
