@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScriptController.cs">
     <Files>
-      <File FileName="Assets/Scripts/LevelObject.cs" Line="110" Column="22" />
-      <File FileName="Assets/Scripts/ScriptController.cs" Line="191" Column="21" />
+      <File FileName="Assets/Scripts/LevelObject.cs" Line="114" Column="10" />
+      <File FileName="Assets/Scripts/ScriptController.cs" Line="194" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
