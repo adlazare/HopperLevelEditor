@@ -192,7 +192,7 @@ public class ScriptController : MonoBehaviour {
 					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Spring);
 					break;
 				case LevelObject.LevelObjectType.Set2DangerNail1:
-					//writeSet2SpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2DangerNail1);
 					break;
 
 				default:
