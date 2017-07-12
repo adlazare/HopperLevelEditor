@@ -118,84 +118,14 @@ public class ScriptController : MonoBehaviour {
 
 				switch(levelObject.levelObjectType)
 				{
-				case LevelObject.LevelObjectType.Box1:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Box1);
-					break;
-				case LevelObject.LevelObjectType.Set1Spinner:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spinner);
-					break;
-				case LevelObject.LevelObjectType.Plank:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Plank);
-					break;
-				case LevelObject.LevelObjectType.Spring:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Spring);
-					break;
-				case LevelObject.LevelObjectType.Coin:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Coin);
-					break;
-				case LevelObject.LevelObjectType.Wall:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Wall);
-					break;
-				case LevelObject.LevelObjectType.PlankJr:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.PlankJr);
-					break;
-				case LevelObject.LevelObjectType.Set1WoodBlock:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1WoodBlock);
-					break;
-				case LevelObject.LevelObjectType.Set1Spring:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spring);
-					break;
-				case LevelObject.LevelObjectType.Set1Plank:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Plank);
-					break;
-				case LevelObject.LevelObjectType.Set1Wall:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Wall);
-					break;
-				case LevelObject.LevelObjectType.Set1EndBox:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1EndBox);
-					break;
-				case LevelObject.LevelObjectType.CoinPlus:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.CoinPlus);
-					break;
-				case LevelObject.LevelObjectType.Set1Spike:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spike);
-					break;
 				case LevelObject.LevelObjectType.CameraAngle:
 					writeCameraAngleScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				case LevelObject.LevelObjectType.ResetCamera:
 					writeResetCameraScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
-				case LevelObject.LevelObjectType.Set1MovingBlock:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1MovingBlock);
-					break;
-				case LevelObject.LevelObjectType.Set1MovingBlockReverse:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1MovingBlockReverse);
-					break;
-				case LevelObject.LevelObjectType.Set1HalfPlank:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1HalfPlank);
-					break;
-				case LevelObject.LevelObjectType.Set1QuarterPlank:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1QuarterPlank);
-					break;
-
-				case LevelObject.LevelObjectType.Set2Plank1:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Plank1);
-					break;
-				case LevelObject.LevelObjectType.Set2Plank2:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Plank2);
-					break;
-				case LevelObject.LevelObjectType.Set2WoodBlock:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2WoodBlock);
-					break;
-				case LevelObject.LevelObjectType.Set2Spring:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Spring);
-					break;
-				case LevelObject.LevelObjectType.Set2DangerNail1:
-					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2DangerNail1);
-					break;
-
 				default:
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),levelObject.levelObjectType);
 					break;
 				}
 			}
