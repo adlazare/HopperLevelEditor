@@ -10,6 +10,7 @@ public class ScriptController : MonoBehaviour {
 
 	private static ScriptController staticRefToThis;
 	public static int buildCount = 0;
+	public static int selectedObjectCount = 0;
 	public static bool errorHappened = false;
 	public string path = "";
 
@@ -28,6 +29,13 @@ public class ScriptController : MonoBehaviour {
 			if(errorHappened) { Debug.Log("BUILD FAILED!!!!!!!!!"); }
 			else { Debug.Log("BUILD SUCCEEDED " + buildCount); }
 		}
+	}
+
+	[MenuItem("Custom Commands/Count Selected Objects _c")]
+	static void SecondCommand()
+	{
+		selectedObjectCount = Selection.objects.Length;
+		Debug.Log("# of Objects Selected: " + selectedObjectCount);
 	}
 
 	// Use this for initialization
