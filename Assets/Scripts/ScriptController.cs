@@ -110,11 +110,6 @@ public class ScriptController : MonoBehaviour {
 				{
 					GameObject nextObject = filteredObjectList[i + 1];
 					timeTillNext = (nextObject.transform.position.z - levelObject.gameObject.transform.position.z) / 12f;
-//					Debug.Log("Diff");
-//					Debug.Log(nextObject.transform.position.z - levelObject.gameObject.transform.position.z);
-//					Debug.Log("Time till next");
-//					Debug.Log(timeTillNext);
-//					Debug.Log("---------------------");
 				}
 				else
 				{
@@ -124,46 +119,46 @@ public class ScriptController : MonoBehaviour {
 				switch(levelObject.levelObjectType)
 				{
 				case LevelObject.LevelObjectType.Box1:
-					writeBox1ScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Box1);
 					break;
 				case LevelObject.LevelObjectType.Set1Spinner:
-					writeSet1SpinnerScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spinner);
 					break;
 				case LevelObject.LevelObjectType.Plank:
-					writePlankScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Plank);
 					break;
 				case LevelObject.LevelObjectType.Spring:
-					writeSpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Spring);
 					break;
 				case LevelObject.LevelObjectType.Coin:
-					writeCoinScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Coin);
 					break;
 				case LevelObject.LevelObjectType.Wall:
-					writeWallScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Wall);
 					break;
 				case LevelObject.LevelObjectType.PlankJr:
-					writePlankJrScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.PlankJr);
 					break;
 				case LevelObject.LevelObjectType.Set1WoodBlock:
-					writeSet1WoodBlockScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1WoodBlock);
 					break;
 				case LevelObject.LevelObjectType.Set1Spring:
-					writeSet1SpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spring);
 					break;
 				case LevelObject.LevelObjectType.Set1Plank:
-					writeSet1PlankScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Plank);
 					break;
 				case LevelObject.LevelObjectType.Set1Wall:
-					writeSet1WallScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Wall);
 					break;
 				case LevelObject.LevelObjectType.Set1EndBox:
-					writeSet1EndBoxScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1EndBox);
 					break;
 				case LevelObject.LevelObjectType.CoinPlus:
-					writeCoinPlusScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.CoinPlus);
 					break;
 				case LevelObject.LevelObjectType.Set1Spike:
-					writeSet1SpikeScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1Spike);
 					break;
 				case LevelObject.LevelObjectType.CameraAngle:
 					writeCameraAngleScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
@@ -172,29 +167,32 @@ public class ScriptController : MonoBehaviour {
 					writeResetCameraScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 				case LevelObject.LevelObjectType.Set1MovingBlock:
-					writeSet1MovingBlockScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1MovingBlock);
 					break;
 				case LevelObject.LevelObjectType.Set1MovingBlockReverse:
-					writeSet1MovingBlockReverseScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1MovingBlockReverse);
 					break;
 				case LevelObject.LevelObjectType.Set1HalfPlank:
-					writeSet1HalfPlankScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1HalfPlank);
 					break;
 				case LevelObject.LevelObjectType.Set1QuarterPlank:
-					writeSet1QuarterPlankScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set1QuarterPlank);
 					break;
 
 				case LevelObject.LevelObjectType.Set2Plank1:
-					writeSet2Plank1ScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Plank1);
 					break;
 				case LevelObject.LevelObjectType.Set2Plank2:
-					writeSet2Plank2ScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Plank2);
 					break;
 				case LevelObject.LevelObjectType.Set2WoodBlock:
-					writeSet2WoodBlockScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2WoodBlock);
 					break;
 				case LevelObject.LevelObjectType.Set2Spring:
-					writeSet2SpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
+					writePlatformScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString(),LevelObject.LevelObjectType.Set2Spring);
+					break;
+				case LevelObject.LevelObjectType.Set2DangerNail1:
+					//writeSet2SpringScriptLine(go, levelObject, streamWriter, poolDefinitionList, timeTillNext.ToString());
 					break;
 
 				default:
@@ -211,297 +209,6 @@ public class ScriptController : MonoBehaviour {
 		}
 	}
 
-	private void writeBox1ScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Box1).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1SpinnerScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Spinner).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-
-	}
-
-	private void writePlankScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Plank).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-
-	}
-
-	private void writeSpringScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Spring).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-
-	}
-
-	private void writeCoinScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Coin).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-
-	}
-
-	private void writeWallScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Wall).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writePlankJrScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.PlankJr).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1WoodBlockScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1WoodBlock).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet2WoodBlockScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set2WoodBlock).ToString();
-
-		if(levelObject.isIntro) { streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString()); }
-		else { streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString); }
-	}
-
-	private void writeSet1SpringScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Spring).ToString();
-
-		if(levelObject.isIntro) { streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString()); }
-		else { streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString); }
-	}
-
-	private void writeSet1PlankScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Plank).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1WallScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Wall).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1EndBoxScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1EndBox).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeCoinPlusScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.CoinPlus).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1SpikeScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1Spike).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
 
 	private void writeCameraAngleScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
 	{
@@ -521,7 +228,8 @@ public class ScriptController : MonoBehaviour {
 		streamWriter.WriteLine("resetCamera");
 	}
 
-	private void writeSet1MovingBlockScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
+
+	private void writePlatformScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString, LevelObject.LevelObjectType levelObjectType)
 	{
 		string xPos = go.transform.position.x.ToString();
 		string yPos = go.transform.position.y.ToString();
@@ -529,113 +237,7 @@ public class ScriptController : MonoBehaviour {
 		string xRot = go.transform.rotation.eulerAngles.x.ToString();
 		string yRot = go.transform.rotation.eulerAngles.y.ToString();
 		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1MovingBlock).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1MovingBlockReverseScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1MovingBlockReverse).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1HalfPlankScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1HalfPlank).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet1QuarterPlankScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set1QuarterPlank).ToString();
-
-		if(levelObject.isIntro)
-		{
-			streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString());
-		}
-		else
-		{
-			streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString);
-		}
-	}
-
-	private void writeSet2Plank1ScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set2Plank1).ToString();
-		if(levelObject.isIntro) { streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString()); }
-		else { streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString); }
-	}
-
-	private void writeSet2Plank2ScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set2Plank2).ToString();
-		if(levelObject.isIntro) { streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString()); }
-		else { streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString); }
-	}
-
-	private void writeSet2SpringScriptLine(GameObject go, LevelObject levelObject, StreamWriter streamWriter, List<PoolDefinition> poolList, string timeTillNextString)
-	{
-		string xPos = go.transform.position.x.ToString();
-		string yPos = go.transform.position.y.ToString();
-		string zPos = go.transform.position.z.ToString();
-		string xRot = go.transform.rotation.eulerAngles.x.ToString();
-		string yRot = go.transform.rotation.eulerAngles.y.ToString();
-		string zRot = go.transform.rotation.eulerAngles.z.ToString();
-		string poolIndex = getPoolIndexByObjectType(poolList, LevelObject.LevelObjectType.Set2Spring).ToString();
+		string poolIndex = getPoolIndexByObjectType(poolList, levelObjectType).ToString();
 
 		if(levelObject.isIntro) { streamWriter.WriteLine("introPlatform," + poolIndex + "," + xPos + "," + yPos + "," + zPos + "," + xRot + "," + yRot + "," + zRot + "," + levelObject.forceTimeTillNext.ToString()); }
 		else { streamWriter.WriteLine("platform," + poolIndex + "," + xPos + "," + yPos + "," + xRot + "," + yRot + "," + zRot + "," + timeTillNextString); }
