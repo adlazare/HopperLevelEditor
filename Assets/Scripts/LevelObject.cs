@@ -7,7 +7,7 @@ public class LevelObject : MonoBehaviour {
 
 	public enum LevelObjectType{Box1, Set1Spinner, Plank, Spring, Coin, Wall, PlankJr, Set1WoodBlock, Set1Spring, Set1Plank, Set1Wall, Set1EndBox, 
 							    CoinPlus, Set1Spike, CameraAngle, ResetCamera, Set1MovingBlock, Set1MovingBlockReverse, Set1HalfPlank, Set1QuarterPlank,
-								Set2Plank1,Set2Plank2,Set2WoodBlock,Set2Spring,Set2DangerNail1,Set2DangerNail2,Set2SafeNail1,Set2SafeNail2,Set2Spinner,Set2Wall,Set2Spring2 };
+		Set2Plank1,Set2Plank2,Set2WoodBlock,Set2Spring,Set2DangerNail1,Set2DangerNail2,Set2SafeNail1,Set2SafeNail2,Set2Spinner,Set2Wall,Set2Spring2,Set2MovingBlock,Set2MovingBlockReverse };
 	public LevelObjectType levelObjectType;
 	public bool isIntro;
 	public float forceTimeTillNext;
@@ -135,6 +135,12 @@ public class LevelObject : MonoBehaviour {
 			break;
 		case LevelObjectType.Set2Spring2:
 			return "Set2Spring2";
+			break;
+		case LevelObjectType.Set2MovingBlock:
+			return "Set2MovingBlock";
+			break;
+		case LevelObjectType.Set2MovingBlockReverse:
+			return "Set2MovingBlockReverse";
 			break;
 		default:
 			return "";
